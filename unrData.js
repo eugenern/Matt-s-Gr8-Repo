@@ -1,4 +1,4 @@
-var unrData : {
+var unrData = {
 
 "AF" : 99.9,
 "AL" : 1.5,
