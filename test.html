@@ -7,7 +7,7 @@
   <script src="jquery-jvectormap.min.js"></script>
   <script src="jquery-jvectormap.js"></script>
   <script src="world-mill.js"></script>
-  <script src="gdp-data.js"></script>
+  <script src="unrData.js"></script>
 </head>
 <body>
   <div id="world-map" style="width: 600px; height: 400px"></div>
@@ -16,13 +16,13 @@
   map: 'world_mill',
   series: {
     regions: [{
-      values: gdpData,
+      values: unrData,
       scale: ['#C8EEFF', '#0071A4'],
       normalizeFunction: 'polynomial'
     }]
   },
   onRegionTipShow: function(e, el, code){
-    el.html(el.html()+' (GDP - '+gdpData[code]+')');
+    el.html(el.html()+' (GDP - '+unrData[code]+')');
   }
   }
   )
