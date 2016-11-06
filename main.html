@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jVectorMap demo</title>
+  <link rel="stylesheet" href="jquery-jvectormap.css" type="text/css" media="screen"/>
+  <script src="jquery.js"></script>
+  <script src="jquery-jvectormap.min.js"></script>
+  <script src="jquery-jvectormap.js"></script>
+  <script src="world-mill.js"></script>
+  <script src="unrData.js"></script>
+  <script src="chr-data.js"></script>
+  <script src="sector-data.js"></script>
+</head>
+<body>
+  <div class="row">
+      <select name="type" id="type" style="margin-left:57px; width:153px;">
+               <option value="PercentChristian">Christian</option>
+               <option value="PercentUnreached">Unreached</option>
+               <option value="Agriculture">Agriculture</option>
+               <option value="Industry">Industry</option>
+               <option value="Services">Services</option>
+      </select>
+      <script>
+      $(document).ready(function(){
+          $(".map").hide();
+          $("#mapChristian").show();
+          $('#type').on('change', function() {
+            if (this.value == 'PercentChristian')
+            {
+              $(".map").hide();
+              $("#mapChristian").show();
+            }
+            else if (this.value == 'PercentUnreached')
+            {
+              $(".map").hide();
+              $("#mapUnreached").show();
+            }
+            else if (this.value == 'Agriculture')
+            {
+              $(".map").hide();
+              $("#mapAgriculture").show();
+            }
+            else if (this.value == 'Industry')
+            {
+              $(".map").hide();
+              $("#mapIndustry").show();
+            }
+            else if (this.value == 'Services')
+            {
+              $(".map").hide();
+              $("#mapServices").show();
+            }
+          });
+      });
+      </script>
+  </div>
+
+  <div class="map" id="mapChristian" style="width: 1200px; height: 700px"></div>
+  <script>
+  $('#mapChristian').vectorMap({
+  map: 'world_mill',
+  series: {
+    regions: [{
+      values: chrData,
+      scale: ['#C8EEFF', '#42056d'],
+      normalizeFunction: 'polynomial'
+    }]
+  },
+  onRegionTipShow: function(e, el, code){
+    el.html(el.html()+' (% Christian - '+chrData[code]+')');
+  }
+  }
+  )
+  </script>
+  <div class="map" id="mapUnreached" style="width: 1200px; height: 700px"></div>
+  <script>
+  $('#mapUnreached').vectorMap({
+  map: 'world_mill',
+  series: {
+    regions: [{
+      values: unrData,
+      scale: ['#C8EEFF', '#0071A4'],
+      normalizeFunction: 'polynomial'
+    }]
+  },
+  onRegionTipShow: function(e, el, code){
+    el.html(el.html()+' (% of Pop Unreached - '+unrData[code]+')');
+  }
+  }
+  )
+  </script>
+  <div class="map" id="mapAgriculture" style="width: 1200px; height: 700px"></div>
+  <script>
+  $('#mapAgriculture').vectorMap({
+  map: 'world_mill',
+  series: {
+    regions: [{
+      values: percentGDPBySector,
+      scale: ['#C8EEFF', '#00a42b'],
+      normalizeFunction: 'polynomial'
+    }]
+  },
+  onRegionTipShow: function(e, el, code){
+    el.html(el.html()+' (% of GDP Agriculture - '+percentGDPBySector[0]+')');
+  }
+  }
+  )
+  </script>
+  <div class="map" id="mapIndustry" style="width: 1200px; height: 700px"></div>
+  <script>
+  $('#mapIndustry').vectorMap({
+  map: 'world_mill',
+  series: {
+    regions: [{
+      values: percentGDPBySector,
+      scale: ['#C8EEFF', '#aa8f06'],
+      normalizeFunction: 'polynomial'
+    }]
+  },
+  onRegionTipShow: function(e, el, code){
+    el.html(el.html()+' (% of GDP Industry - '+percentGDPBySector[1]+')');
+  }
+  }
+  )
+  </script>
+  <div class="map" id="mapServices" style="width: 1200px; height: 700px"></div>
+  <script>
+  $('#mapServices').vectorMap({
+  map: 'world_mill',
+  series: {
+    regions: [{
+      values: percentGDPBySector,
+      scale: ['#C8EEFF', '#aa2f06'],
+      normalizeFunction: 'polynomial'
+    }]
+  },
+  onRegionTipShow: function(e, el, code){
+    el.html(el.html()+' (% of GDP Services - '+percentGDPBySector[2]+')');
+  }
+  }
+  )
+  </script>
+
+</body>
+</html>
