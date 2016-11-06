@@ -95,13 +95,13 @@
   map: 'world_mill',
   series: {
     regions: [{
-      values: percentGDPBySector,
+      values: agriSector,
       scale: ['#C8EEFF', '#00a42b'],
       normalizeFunction: 'polynomial'
     }]
   },
   onRegionTipShow: function(e, el, code){
-    el.html(el.html()+' (% of GDP Agriculture - '+percentGDPBySector[0]+')');
+    el.html(el.html()+' (% of GDP Agriculture - '+agriSector[code]+')');
   }
   }
   )
@@ -112,13 +112,13 @@
   map: 'world_mill',
   series: {
     regions: [{
-      values: percentGDPBySector,
+      values: industrySector,
       scale: ['#C8EEFF', '#aa8f06'],
       normalizeFunction: 'polynomial'
     }]
   },
   onRegionTipShow: function(e, el, code){
-    el.html(el.html()+' (% of GDP Industry - '+percentGDPBySector[1]+')');
+    el.html(el.html()+' (% of GDP Industry - '+industrySector[code]+')');
   }
   }
   )
@@ -129,13 +129,13 @@
   map: 'world_mill',
   series: {
     regions: [{
-      values: percentGDPBySector,
+      values: servicesSector,
       scale: ['#C8EEFF', '#aa2f06'],
       normalizeFunction: 'polynomial'
     }]
   },
   onRegionTipShow: function(e, el, code){
-    el.html(el.html()+' (% of GDP Services - '+percentGDPBySector[2]+')');
+    el.html(el.html()+' (% of GDP Services - '+servicesSector[code]+')');
   }
   }
   )
